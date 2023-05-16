@@ -5,12 +5,12 @@ $config['variable_dump'] =false;
 // debug configuration
 $config['debug'] =true;// enable debug mode (true/false)
 
-define('BASE', 'http://localhost/PureFrame-Template/'); // base url for the site
+define('BASE', 'https://devt2.incodexcel.com/'); // base url for the site
 // define('BASE', 'http://localhost:5000/'); // base url for the site
 
 // site configuration
-$config['app_name'] ="my webiste" ;// site name
-$config['app_desc'] ="my webiste" ;// site name
+$config['app_name'] ="BCI Data Management" ;// site name
+$config['app_desc'] ="BCI Data Management" ;// site name
 
 // email configuration
 $config['smtp_host'] ="sandbox.smtp.mailtrap.io" ; // smtp server hostname

@@ -1,8 +1,8 @@
 <?php
 $config['db'] = array(
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'sampledb',
+	'username' => 'sql_devt2_incode',
+	'password' => 'Ybkb33sbF6W2w868',
+	'database' => 'sql_devt2_incode',
 	'dbdriver' => 'mysql'
 );

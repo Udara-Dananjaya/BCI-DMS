@@ -64,26 +64,7 @@ class Sample
         }
     }
 
-    public function Add_User()
-    {
-        $data = [];
-        if (empty($_SESSION['USER'])) {
-            redirect('Sample/login');
-        } // Check Is the user Login
-
-        $data['page'] = "Add User"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Sample/List_User');
-        }
-        $this->view('Sample/add_user', $data);
-    }
+    
     public function Delete_User()
     {
         $data = [];
