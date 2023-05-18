@@ -3,7 +3,7 @@ class Admin
 {
     public function __construct()
     {
-        //  if (empty($_SESSION['USER'])) {
+          //if (empty($_SESSION['USER'])) {
         //     redirect('Auth/login');
         // } // Check Is the user Login
     }
@@ -19,187 +19,25 @@ class Admin
         $row = $staff->custom_query("SELECT COUNT('id') as COUNT FROM `staff`");
         $data['Dashboard'] = array("student" => "{$row[0]->COUNT}");
         $row = $staff->findAll();
-        $data['Dashboard_table'] = $row;
+        $data['Student_table'] = $row;
         $this->view('Admin/index', $data);
     }
 
-    public function Manage_Staff()
+    public function Create_Degree()
     {
         $data = [];
-        $data['page'] = "Manage Staff"; // Page URL
-        $data['pagegroup'] = "StaffManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Create Degree"; // Page URL
+        $data['pagegroup'] = "DegreeManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Staff');
+            $degree = new Demo_model;
+            $degree->set_table('degree');
+            $insert_data = array("degree_name" => $_POST['inputEmail']);
+            $degree->insert($insert_data);
+            redirect('Admin/Manage_Degree');
         }
-        $this->view('Admin/Manage_Staff', $data);
-    }
-
-    public function Update_Staff()
-    {
-        $data = [];
-        $data['page'] = "Update Staff"; // Page URL
-        $data['pagegroup'] = "StaffManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
-            $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Staff');
-        }
-
-        if (!empty($_GET['id'])) {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
-            $this->view('Admin/Update_Staff', $data);
-        } else {
-            redirect('Admin/Outlook_Staff');
-        }
-    }
-
-    public function Outlook_Staff()
-    {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Staff"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Staff', $data);
-    }
-
-    public function Delete_Staff()
-    {
-        $data = [];
-        $data['page'] = "Delete User"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Staff');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Staff');
-        }
-
-
-        $this->view('Admin/Outlook_Staff', $data);
-    }
-
-    public function Manage_Department()
-    {
-        $data = [];
-        $data['page'] = "Manage Department"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Department');
-        }
-        $this->view('Admin/Manage_Department', $data);
-    }
-
-    public function Update_Department()
-    {
-        $data = [];
-        $data['page'] = "Update Department"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
-            $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Department');
-        }
-
-        if (!empty($_GET['id'])) {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
-            $this->view('Admin/Update_Department', $data);
-        } else {
-            redirect('Admin/Outlook_Department');
-        }
-    }
-
-    public function Outlook_Department()
-    {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Department"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Department', $data);
-    }
-
-    public function Delete_Department()
-    {
-        $data = [];
-        $data['page'] = "Delete Department"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Department');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Department');
-        }
-
-
-        $this->view('Admin/Delete_Department', $data);
-    }
-    
-    public function Manage_Degree()
-    {
-        $data = [];
-        $data['page'] = "Manage Degree"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Degree');
-        }
-        $this->view('Admin/Manage_Degree', $data);
+        $this->view('Admin/Create_Degree', $data);
     }
 
     public function Update_Degree()
@@ -214,63 +52,44 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Degree');
+            redirect('Admin/Manage_Degree');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Degree', $data);
         } else {
-            redirect('Admin/Outlook_Degree');
+            redirect('Admin/Manage_Degree');
         }
     }
 
-    public function Outlook_Degree()
+    public function Manage_Degree()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Degree"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Degree"; // Page URL
+        $data['pagegroup'] = "DegreeManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Degree', $data);
-    }
-
-    public function Delete_Degree()
-    {
-        $data = [];
-        $data['page'] = "Delete Degree"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Degree');
+        $degree = new Demo_model; // Load Model
+        $data['Degree_table'] =  $degree->custom_query(
+            "SELECT * FROM `degree`"
+        );
+        $this->view('Admin/Manage_Degree', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $degree->set_table('degree');
+                $degree->delete($_GET['id'], "degree_id");
+                route_url('Admin/Manage_Degree');
+            }
         }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Degree');
-        }
-
-
-        $this->view('Admin/Delete_Degree', $data);
     }
       
-    public function Manage_Batch()
+    public function Create_Batch()
     {
         $data = [];
         $data['page'] = "Manage Batch"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['pagegroup'] = "BatchManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -278,9 +97,9 @@ class Admin
             $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Batch');
+            redirect('Admin/Manage_Batch');
         }
-        $this->view('Admin/Manage_Batch', $data);
+        $this->view('Admin/Create_Batch', $data);
     }
 
     public function Update_Batch()
@@ -295,59 +114,40 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Batch');
+            redirect('Admin/Manage_Batch');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Batch', $data);
         } else {
-            redirect('Admin/Outlook_Batch');
+            redirect('Admin/Manage_Batch');
         }
     }
 
-    public function Outlook_Batch()
+    public function Manage_Batch()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Batch"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Batch"; // Page URL
+        $data['pagegroup'] = "BatchManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Batch', $data);
-    }
-
-    public function Delete_Batch()
-    {
-        $data = [];
-        $data['page'] = "Delete Batch"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Batch');
+        $batch = new Demo_model; // Load Model
+        $data['Batch_table'] =  $batch->custom_query(
+            "SELECT * FROM `batch`"
+        );
+        $this->view('Admin/Manage_Batch', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $batch->set_table('batch');
+                $batch->delete($_GET['id'], "batch_id");
+                route_url('Admin/Manage_Batch');
+            }
         }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Batch');
-        }
-
-
-        $this->view('Admin/Delete_Batch', $data);
     }
           
-    public function Manage_Semester()
+    public function Create_Semester()
     {
         $data = [];
         $data['page'] = "Manage Semester"; // Page URL
@@ -359,9 +159,9 @@ class Admin
             $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Semester');
+            redirect('Admin/Manage_Semester');
         }
-        $this->view('Admin/Manage_Semester', $data);
+        $this->view('Admin/Create_Semester', $data);
     }
 
     public function Update_Semester()
@@ -376,59 +176,40 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Semester');
+            redirect('Admin/Manage_Semester');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Semester', $data);
         } else {
-            redirect('Admin/Outlook_Semester');
+            redirect('Admin/Manage_Semester');
         }
     }
 
-    public function Outlook_Semester()
+    public function Manage_Semester()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Semester"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Semester"; // Page URL
+        $data['pagegroup'] = "SemesterManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Semester', $data);
-    }
-
-    public function Delete_Semester()
-    {
-        $data = [];
-        $data['page'] = "Delete Semester"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Semester');
+        $semster = new Demo_model; // Load Model
+        $data['Semester_table'] =  $semster->custom_query(
+            "SELECT * FROM `semester`"
+        );
+        $this->view('Admin/Manage_Semester', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('semester');
+                $semster->delete($_GET['id'], "semester_id");
+                route_url('Admin/Manage_Semester');
+            }
         }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Semester');
-        }
-
-
-        $this->view('Admin/Delete_Semester', $data);
     }
               
-    public function Manage_Course()
+    public function Create_Course()
     {
         $data = [];
         $data['page'] = "Manage Course"; // Page URL
@@ -440,9 +221,9 @@ class Admin
             $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Course');
+            redirect('Admin/Manage_Course');
         }
-        $this->view('Admin/Manage_Course', $data);
+        $this->view('Admin/Create_Course', $data);
     }
 
     public function Update_Course()
@@ -457,59 +238,164 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Course');
+            redirect('Admin/Manage_Course');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Course', $data);
         } else {
-            redirect('Admin/Outlook_Course');
+            redirect('Admin/Manage_Course');
         }
     }
 
-    public function Outlook_Course()
+    public function Manage_Course()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Course"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Course"; // Page URL
+        $data['pagegroup'] = "CourseManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Course', $data);
+        $semster = new Demo_model; // Load Model
+        $data['Course_table'] =  $semster->custom_query(
+            "SELECT * FROM `course`"
+        );
+        $this->view('Admin/Manage_Course', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('course');
+                $semster->delete($_GET['id'], "course_id");
+                route_url('Admin/Manage_Course');
+            }
+        }
     }
 
-    public function Delete_Course()
+    public function Create_Department()
     {
         $data = [];
-        $data['page'] = "Outlook Course"; // Page URL
+        $data['page'] = "Manage Department"; // Page URL
         $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Course');
-        }
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $user = new Demo_model;
+            $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Course');
+            redirect('Admin/Manage_Department');
+        }
+        $this->view('Admin/Create_Department', $data);
+    }
+
+    public function Update_Department()
+    {
+        $data = [];
+        $data['page'] = "Update Department"; // Page URL
+        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $user = new Demo_model;
+            $user->set_table('users');
+            $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
+            $user->update($_POST['inputId'], $update_data, "id");
+            redirect('Admin/Manage_Department');
         }
 
-
-        $this->view('Admin/Delete_Course', $data);
+        if (!empty($_GET['id'])) {
+            $user = new Demo_model;
+            $user->set_table('users');
+            $arr['id'] = $_GET['id'];
+            $data['Create_User'] = $user->first($arr);
+            $this->view('Admin/Update_Department', $data);
+        } else {
+            redirect('Admin/Manage_Department');
+        }
     }
-                  
-    public function Manage_Award()
+
+    public function Manage_Department()
+    {
+        $data['page'] = "Manage Department"; // Page URL
+        $data['pagegroup'] = "DepartmentManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+        $semster = new Demo_model; // Load Model
+        $data['Department_table'] =  $semster->custom_query(
+            "SELECT * FROM `department`"
+        );
+        $this->view('Admin/Manage_Department', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('department');
+                $semster->delete($_GET['id'], "department_id");
+                route_url('Admin/Manage_Department');
+            }
+        }
+    }
+
+    public function Create_Staff()
+    {
+        $data = [];
+        $data['page'] = "Manage Staff"; // Page URL
+        $data['pagegroup'] = "StaffManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $user = new Demo_model;
+            $user->set_table('users');
+            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
+            $user->insert($insert_data);
+            redirect('Admin/Manage_Staff');
+        }
+        $this->view('Admin/Create_Staff', $data);
+    }
+
+    public function Update_Staff()
+    {
+        $data = [];
+        $data['page'] = "Update Staff"; // Page URL
+        $data['pagegroup'] = "StaffManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $user = new Demo_model;
+            $user->set_table('users');
+            $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
+            $user->update($_POST['inputId'], $update_data, "id");
+            redirect('Admin/Manage_Staff');
+        }
+
+        if (!empty($_GET['id'])) {
+            $user = new Demo_model;
+            $user->set_table('users');
+            $arr['id'] = $_GET['id'];
+            $data['Create_User'] = $user->first($arr);
+            $this->view('Admin/Update_Staff', $data);
+        } else {
+            redirect('Admin/Manage_Staff');
+        }
+    }
+
+    public function Manage_Staff()
+    {
+        $data['page'] = "Manage Staff"; // Page URL
+        $data['pagegroup'] = "StaffManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+        $semster = new Demo_model; // Load Model
+        $data['Staff_table'] =  $semster->custom_query(
+            "SELECT * FROM `staff`"
+        );
+        $this->view('Admin/Manage_Staff', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('staff');
+                $semster->delete($_GET['id'], "staff_id");
+                route_url('Admin/Manage_Staff');
+            }
+        }
+    }
+
+    public function Create_Award()
     {
         $data = [];
         $data['page'] = "Manage Award"; // Page URL
@@ -521,9 +407,9 @@ class Admin
             $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Award');
+            redirect('Admin/Manage_Award');
         }
-        $this->view('Admin/Manage_Award', $data);
+        $this->view('Admin/Create_Award', $data);
     }
 
     public function Update_Award()
@@ -538,59 +424,40 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Award');
+            redirect('Admin/Manage_Award');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Award', $data);
         } else {
-            redirect('Admin/Outlook_Award');
+            redirect('Admin/Manage_Award');
         }
     }
 
-    public function Outlook_Award()
+    public function Manage_Award()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Award"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Award"; // Page URL
+        $data['pagegroup'] = "AwardManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Award', $data);
+        $semster = new Demo_model; // Load Model
+        $data['Award_table'] =  $semster->custom_query(
+            "SELECT * FROM `award`"
+        );
+        $this->view('Admin/Manage_Award', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('award');
+                $semster->delete($_GET['id'], "Award_id");
+                route_url('Admin/Manage_Award');
+            }
+        }
     }
 
-    public function Delete_Award()
-    {
-        $data = [];
-        $data['page'] = "Delete Award"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Award');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Award');
-        }
-
-
-        $this->view('Admin/Delete_Award', $data);
-    }
-                  
-    public function Manage_Student()
+    public function Create_Student()
     {
         $data = [];
         $data['page'] = "Manage Student"; // Page URL
@@ -602,9 +469,9 @@ class Admin
             $user->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
             $user->insert($insert_data);
-            redirect('Admin/Outlook_Student');
+            redirect('Admin/Manage_Student');
         }
-        $this->view('Admin/Manage_Student', $data);
+        $this->view('Admin/Create_Student', $data);
     }
 
     public function Update_Student()
@@ -619,61 +486,49 @@ class Admin
             $user->set_table('users');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
-            redirect('Admin/Outlook_Student');
+            redirect('Admin/Manage_Student');
         }
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
             $user->set_table('users');
             $arr['id'] = $_GET['id'];
-            $data['Manage_User'] = $user->first($arr);
+            $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Student', $data);
         } else {
-            redirect('Admin/Outlook_Student');
+            redirect('Admin/Manage_Student');
         }
     }
 
-    public function Outlook_Student()
+    public function Manage_Student()
     {
-        $user = new Demo_model; // Load Model
-        $user->set_table('users'); // Set Model Table
-        $data['page'] = "Outlook Student"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['page'] = "Manage Student"; // Page URL
+        $data['pagegroup'] = "StudentManagement"; // Page Sub Group Customer -> Manage Customer
         $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $row = $user->findAll();
-        $data['Usres_table'] = $row;
-        $this->view('Admin/Outlook_Student', $data);
-    }
-
-    public function Delete_Student()
-    {
-        $data = [];
-        $data['page'] = "Delete Student"; // Page URL
-        $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer
-        $data['User'] = $_SESSION['USER']->email; // Login User Name
-        $user = new Demo_model;
-        $user->set_table('users');
-        $row = $user->custom_query("SELECT id,email FROM `users`;");
-		$data['User_table'] = $row;
-
-        if (!empty($_GET['delete'])) {
-            $user->delete($_GET['delete']);
-            redirect('Admin/Outlook_Student');
+        $semster = new Demo_model; // Load Model
+        $data['Student_table'] =  $semster->custom_query(
+            "SELECT * FROM `student`"
+        );
+        $this->view('Admin/Manage_Student', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if (isset($_GET['delete'])) {
+                $semster->set_table('student');
+                $semster->delete($_GET['id'], "Student_id");
+                route_url('Admin/Manage_Student');
+            }
         }
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
-            redirect('Admin/Outlook_Student');
-        }
-
-
-        $this->view('Admin/Delete_Student', $data);
     }
 
     public function Profile()
     {
-        
+        $user = new Demo_model; // Load Model
+        $user->set_table('user'); // Set Model Table
+        $data['page'] = "View Profile"; // Page URL
+        $data['pagegroup'] = "ProfileManagement"; // Page Sub Group Customer -> Manage Customer
+        $data['User'] = $_SESSION['USER']->email; // Login User Name
+        $row = $user->findAll();
+        $data['User_table'] = $row;
+        $this->view('Admin/Profile', $data);
     }
 
     public function Settings()

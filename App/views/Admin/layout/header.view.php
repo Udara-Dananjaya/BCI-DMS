@@ -34,16 +34,15 @@
 				<li class="nav-item dropdown pe-3">
 					<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 						<img src="<?= BASE ?>assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-						<span class="d-none d-md-block dropdown-toggle ps-2"><?= $User ?></span>
+						<span class="d-none d-md-block dropdown-toggle ps-2">Administrator</span>
 					</a><!-- End Profile Iamge Icon -->
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-						<!-- <li class="dropdown-header">
-							<h6><?= $User ?></h6>
-							<span>Web Designer</span>
+						<li class="dropdown-header">
+							<h6>Administrator</h6>
 						</li> 
 						<li>
 							<hr class="dropdown-divider">
-						</li>-->
+						</li>
 						<li>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<i class="bi bi-box-arrow-right"></i>
@@ -64,117 +63,64 @@
 					<span>Dashboard</span>
 				</a>
 			</li><!-- End Dashboard Nav -->
-	
-			<li class="nav-heading">Staff Management</li>
 			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Staff") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Staff">
-					<i class="bi bi-person"></i>
-					<span>Outlook Staff</span>
+				<a class="nav-link <?= ($pagegroup != "DepartmentManagement") ? "collapsed" : ""; ?>" data-bs-target="#DepartmentManagement-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-menu-button-wide"></i>
+					<span>Degree Management</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Manage Staff") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Staff">
-					<i class="bi bi-person"></i>
-					<span>Manage Staff</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
+				<ul id="DepartmentManagement-nav" class="nav-content collapse <?= ($pagegroup == "DepartmentManagement") ? "show" : ""; ?>" data-bs-parent="#sidebar-nav">
+					<li>
+						<a href="<?= BASE ?>Admin/Manage_Degree" class="<?= ($page == "Manage Degree") ? "active" : ""; ?>">
+							<i class="bi bi-circle"></i><span>Degree</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?= BASE ?>Admin/Manage_Batch" class="<?= ($page == "Manage Batch") ? "active" : ""; ?>">
+							<i class="bi bi-circle"></i><span>Batch</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?= BASE ?>Admin/Manage_Semester" class="<?= ($page == "Manage Semester") ? "active" : ""; ?>">
+							<i class="bi bi-circle"></i><span>Semester</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?= BASE ?>Admin/Manage_Course" class="<?= ($page == "Manage Course") ? "active" : ""; ?>">
+							<i class="bi bi-circle"></i><span>Course</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End Components Nav -->
 
 			<li class="nav-heading">Department Management</li>
 			<li class="nav-item">
-				<a class="nav-link <?= ($page == "") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Department">
-					<i class="bi bi-person"></i>
-					<span>Outlook Department</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
 				<a class="nav-link <?= ($page == "Manage Department") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Department">
 					<i class="bi bi-person"></i>
-					<span>Manage Department</span>
+					<span>Department </span>
 				</a>
 			</li><!-- End Profile Page Nav -->
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-heading">Degree Management</li>
+	
+			<li class="nav-heading">Staff Management</li>
 			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Degree") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Degree">
+				<a class="nav-link <?= ($page == "Manage Staff") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Staff">
 					<i class="bi bi-person"></i>
-					<span>Outlook Degree</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Manage Degree") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Degree">
-					<i class="bi bi-person"></i>
-					<span>Manage Degree</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-heading">Batch Management</li>
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Batch") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Batch">
-					<i class="bi bi-person"></i>
-					<span>Outlook Batch</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Manage Batch") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Batch">
-					<i class="bi bi-person"></i>
-					<span>Manage Batch</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-heading">Semester Management</li>
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Semester") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Semester">
-					<i class="bi bi-person"></i>
-					<span>Outlook Semester</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Manage Semester") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Semester">
-					<i class="bi bi-person"></i>
-					<span>Manage Semester</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-heading">Course Management</li>
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Course") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Course">
-					<i class="bi bi-person"></i>
-					<span>Outlook Course</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Manage Course") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Course">
-					<i class="bi bi-person"></i>
-					<span>Manage Course</span>
+					<span>Staff</span>
 				</a>
 			</li><!-- End Profile Page Nav -->
 
 			<li class="nav-heading">Award Management</li>
 			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Award") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Award">
-					<i class="bi bi-person"></i>
-					<span>Outlook Award</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
 				<a class="nav-link <?= ($page == "Manage Award") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Award">
 					<i class="bi bi-person"></i>
-					<span>Manage Award</span>
+					<span>Award</span>
 				</a>
 			</li><!-- End Profile Page Nav -->
 
 			<li class="nav-heading">Student Management</li>
 			<li class="nav-item">
-				<a class="nav-link <?= ($page == "Outlook Student") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Outlook_Student">
-					<i class="bi bi-person"></i>
-					<span>Outlook Student</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-			<li class="nav-item">
 				<a class="nav-link <?= ($page == "Manage Student") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Student">
 					<i class="bi bi-person"></i>
-					<span>Manage Student</span>
+					<span>Student</span>
 				</a>
 			</li><!-- End Profile Page Nav -->
 

@@ -7,7 +7,7 @@ class Demo
         $temp = new Template();
         $temp->header = "Template/layout/header";
         $temp->footer = "Template/layout/footer";
-        $data['page'] = "User List"; // Page URL
+        $data['page'] = "User Lists"; // Page URL
         $data['pagegroup'] = "UserManagement";
         $data['User'] = "dd";
         $user = new Demo_model; // Load Model

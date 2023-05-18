@@ -1,11 +1,11 @@
 <?php require_once('layout/header.view.php'); ?>
 <main id="main" class="main">
 	<div class="pagetitle">
-		<h1>Change Password</h1>
+		<h1>Create Course</h1>
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				<li class="breadcrumb-item active">Profile</li>
+				<li class="breadcrumb-item active">Create Course</li>
 			</ol>
 		</nav>
 	</div>
@@ -15,24 +15,25 @@
 			<div class="col-lg-6">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Change Your Password</h5>
+						<h5 class="card-title">Create the Course</h5>
 						<!-- Vertical Form -->
 						<form class="row g-3" method="POST">
+
 							<div class="col-12">
-								<label for="inputEmail" class="form-label">Email</label>
-								<input type="email" class="form-control" name="inputEmail" id="inputEmail" value="<?= $Manage_User->email ?>">
+								<label for="inputCourse" class="form-label">Course Name</label>
+								<input type="text" class="form-control" name="inputCourse" id="inputYear">
 							</div>
 							<div class="col-12">
-								<label for="inputPassword" class="form-label">Current Password</label>
-								<input type="password" class="form-control" name="inputPassword" id="inputPassword" value="<?= $Manage_User->password ?>">
+								<label for="inputDescription" class="form-label">Course Description</label>
+								<textarea  class="form-control" id="inputDescription" name="inputDescription" rows="4" cols="50"></textarea>
 							</div>
-                            <div class="col-12">
-								<label for="inputPassword" class="form-label">New Password</label>
-								<input type="password" class="form-control" name="inputNewPassword" id="inputNewPassword" required>
+							<div class="col-12">
+								<label for="inputCredits" class="form-label">Course Credits</label>
+								<input type="number" class="form-control" name="inputCredits" id="inputCredits">
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary">Submit</button>
-								<a href="index"><button class="btn btn-secondary">Cancel</button></a>
+                                <a href="Manage_Course"><button class="btn btn-secondary">Cancel</button></a>
 							</div>
 						</form>
 						<!-- Vertical Form -->

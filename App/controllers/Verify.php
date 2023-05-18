@@ -6,5 +6,9 @@ class Verify
     {
         $this->view('Verify/index');
     }
+    public function Verification()
+    {
+        $this->view('Verify/verify');
+    }
  
 }

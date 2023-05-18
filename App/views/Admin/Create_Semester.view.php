@@ -1,11 +1,11 @@
 <?php require_once('layout/header.view.php'); ?>
 <main id="main" class="main">
 	<div class="pagetitle">
-		<h1>Change Password</h1>
+		<h1>Create Semester</h1>
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				<li class="breadcrumb-item active">Profile</li>
+				<li class="breadcrumb-item active">Create Semester</li>
 			</ol>
 		</nav>
 	</div>
@@ -15,24 +15,26 @@
 			<div class="col-lg-6">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Change Your Password</h5>
+						<h5 class="card-title">Create the Semester</h5>
 						<!-- Vertical Form -->
 						<form class="row g-3" method="POST">
+
 							<div class="col-12">
-								<label for="inputEmail" class="form-label">Email</label>
-								<input type="email" class="form-control" name="inputEmail" id="inputEmail" value="<?= $Manage_User->email ?>">
+								<label for="inputYear" class="form-label">Semester</label>
+								<input type="text" class="form-control" name="inputYear" id="inputYear">
 							</div>
 							<div class="col-12">
-								<label for="inputPassword" class="form-label">Current Password</label>
-								<input type="password" class="form-control" name="inputPassword" id="inputPassword" value="<?= $Manage_User->password ?>">
+								<label for="inputStart" class="form-label">Start Date</label>
+								<input type="date" class="form-control" name="inputStart" id="inputStart">
 							</div>
-                            <div class="col-12">
-								<label for="inputPassword" class="form-label">New Password</label>
-								<input type="password" class="form-control" name="inputNewPassword" id="inputNewPassword" required>
+							<div class="col-12">
+								<label for="inputEnd" class="form-label">End Date</label>
+								<input type="date" class="form-control" name="inputEnd" id="inputEnd">
 							</div>
+							
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary">Submit</button>
-								<a href="index"><button class="btn btn-secondary">Cancel</button></a>
+                                <a href="Manage_Semester"><button class="btn btn-secondary">Cancel</button></a>
 							</div>
 						</form>
 						<!-- Vertical Form -->
