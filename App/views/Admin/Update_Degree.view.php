@@ -19,7 +19,7 @@
 						<!-- Vertical Form -->
 						<form class="row g-3" method="POST">
 							<div class="col-12">
-								<label for="inputId" class="form-label">Award ID</label>
+								<label for="inputId" class="form-label">Degree ID</label>
 								<input type="hidden" name="inputId" value="<?= $Manage_Degree->degree_id ?>">
 								<input type="text" class="form-control" id="inputId" disabled value="<?= $Manage_Degree->degree_id  ?>">
 							</div>

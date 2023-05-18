@@ -64,11 +64,11 @@
 				</a>
 			</li><!-- End Dashboard Nav -->
 			<li class="nav-item">
-				<a class="nav-link <?= ($pagegroup != "DepartmentManagement") ? "collapsed" : ""; ?>" data-bs-target="#DepartmentManagement-nav" data-bs-toggle="collapse" href="#">
+				<a class="nav-link <?= ($pagegroup != "DegreeManagement") ? "collapsed" : ""; ?>" data-bs-target="#DegreeManagement-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-menu-button-wide"></i>
 					<span>Degree Management</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-				<ul id="DepartmentManagement-nav" class="nav-content collapse <?= ($pagegroup == "DepartmentManagement") ? "show" : ""; ?>" data-bs-parent="#sidebar-nav">
+				<ul id="DegreeManagement-nav" class="nav-content collapse <?= ($pagegroup == "DegreeManagement") ? "show" : ""; ?>" data-bs-parent="#sidebar-nav">
 					<li>
 						<a href="<?= BASE ?>Admin/Manage_Degree" class="<?= ($page == "Manage Degree") ? "active" : ""; ?>">
 							<i class="bi bi-circle"></i><span>Degree</span>
@@ -84,11 +84,6 @@
 							<i class="bi bi-circle"></i><span>Semester</span>
 						</a>
 					</li>
-					<li>
-						<a href="<?= BASE ?>Admin/Manage_Course" class="<?= ($page == "Manage Course") ? "active" : ""; ?>">
-							<i class="bi bi-circle"></i><span>Course</span>
-						</a>
-					</li>
 				</ul>
 			</li><!-- End Components Nav -->
 
@@ -100,7 +95,7 @@
 				</a>
 			</li><!-- End Profile Page Nav -->
 	
-			<li class="nav-heading">Staff Management</li>
+			<li class="nav-heading">Administration</li>
 			<li class="nav-item">
 				<a class="nav-link <?= ($page == "Manage Staff") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Staff">
 					<i class="bi bi-person"></i>
@@ -121,6 +116,14 @@
 				<a class="nav-link <?= ($page == "Manage Student") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Student">
 					<i class="bi bi-person"></i>
 					<span>Student</span>
+				</a>
+			</li><!-- End Profile Page Nav -->
+
+			<li class="nav-heading">Token Management</li>
+			<li class="nav-item">
+				<a class="nav-link <?= ($page == "Manage Token") ? "" : "collapsed"; ?>"  href="<?= BASE ?>Admin/Manage_Token">
+					<i class="bi bi-person"></i>
+					<span>Token</span>
 				</a>
 			</li><!-- End Profile Page Nav -->
 

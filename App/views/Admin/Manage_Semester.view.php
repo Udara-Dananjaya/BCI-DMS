@@ -12,6 +12,28 @@
 		</nav>
 	</div>
 	<!-- End Page Title -->
+
+	<section class="section dashboard">
+		<div class="row justify-content-left">
+			<div class="col-lg-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Select Degree</h5>
+						<!-- Vertical Form -->
+						<form class="row g-3" method="POST">
+
+							<div class="col-12">
+								<label for="inputDegree" class="form-label">Degree</label>
+								<input type="text" class="form-control" name="inputDegree" id="inputDegree">
+							</div>
+						</form>
+						<!-- Vertical Form -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<div style="text-align: right;">
 		<a href="Create_Semester"><button class="btn btn-primary">+ Add New Semester</button></a>
 	</div>
