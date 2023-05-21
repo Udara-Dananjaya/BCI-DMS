@@ -29,6 +29,7 @@
 									<tr>
 										<th scope="col">Course ID</th>
 										<th scope="col">Course</th>
+										<th scope="col">Semester</th>
 										<th scope="col">Course Description</th>
 										<th scope="col">Course Credits</th>
 										<th scope="col">Action</th>
@@ -38,6 +39,7 @@
 									<tr>
                                         <th scope="col">Course ID</th>
 										<th scope="col">Course</th>
+										<th scope="col">Semester</th>
 										<th scope="col">Course Description</th>
 										<th scope="col">Course Credits</th>
 										<th scope="col">Action</th>
@@ -54,6 +56,7 @@
 											echo "<tr>";
 											echo "<td>{$value->course_id}</td>";
 											echo "<td>{$value->course_name}</td>";
+											echo "<td>{$value->sem_name}</td>";
 											echo "<td>{$value->course_description}</td>";
 											echo "<td>{$value->course_credits}</td>";
 											echo "<td><a href='" . BASE . "Admin/Update_Course?id={$value->course_id}'><i class='bi bi-pencil'></i></a>

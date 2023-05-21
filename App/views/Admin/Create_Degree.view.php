@@ -20,8 +20,26 @@
 						<form class="row g-3" method="POST">
 
 							<div class="col-12">
-								<label for="inputDegree" class="form-label">Degree Name</label>
+								<label for="inputDegree" class="form-label">Degree</label>
 								<input type="text" class="form-control" name="inputDegree" id="inputDegree">
+							</div>
+							<div class="col-12">
+								<label for="inputDepartment" class="form-label">Department</label>
+								<select name="inputDepartment"  class="form-control">
+                                    <option class="form-control" selected="">Select Department</option>
+                                    <option> <? $Manage_Department->dep_name ?></option>
+                                </select>
+							</div>
+							<div class="col-12">
+							<label for="inputCordinator" class="form-label">Cordinator</label>
+								<select name="inputCordinator" class="form-control" id="inputCordinator" required> 
+									<option disabled="" selected="">Select Cordinator</option>
+									$Select_Cordinator
+								</select>
+							</div>
+							<div class="col-12">
+								<label for="inputDuration" class="form-label">Duration</label>
+								<input type="number" class="form-control" name="inputDuration" id="inputDuration">
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary">Submit</button>

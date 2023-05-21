@@ -29,13 +29,19 @@
 									<tr>
 										<th scope="col">Degree ID</th>
 										<th scope="col">Degree</th>
+										<th scope="col">Department</th>
+										<th scope="col">Cordinator</th>
+										<th scope="col">Duration</th>
 										<th scope="col">Action</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
-                                        <th scope="col">Degree ID</th>
+										<th scope="col">Degree ID</th>
 										<th scope="col">Degree</th>
+										<th scope="col">Department</th>
+										<th scope="col">Cordinator</th>
+										<th scope="col">Duration</th>
 										<th scope="col">Action</th>
 									</tr>
 								</tfoot>
@@ -43,15 +49,18 @@
 								<?php
 									if ($Degree_table == false) {
 										echo "<tr>";
-										echo " <td colspan='3'>- No Data Available In Table -</td>";
+										echo " <td colspan='6'>- No Data Available In Table -</td>";
 										echo "</tr>";
 									} else {
 										foreach ($Degree_table as $value) {
 											echo "<tr>";
-											echo "<td>{$value->degree_id}</td>";
-											echo "<td>{$value->degree_name}</td>";
-											echo "<td><a href='" . BASE . "Admin/Update_Degree?id={$value->degree_id}'><i class='bi bi-pencil'></i></a>
-													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Degree?id={$value->degree_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>
+											echo "<td>{$value->deg_id}</td>";
+											echo "<td>{$value->deg_name}</td>";
+											echo "<td>{$value->dep_name}</td>";
+											echo "<td>{$value->first_name}</td>";
+											echo "<td>{$value->duration}</td>";
+											echo "<td><a href='" . BASE . "Admin/Update_Degree?id={$value->deg_id}'><i class='bi bi-pencil'></i></a>
+													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Degree?id={$value->deg_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>
 											</td>";
 											echo "</tr>";
 										}

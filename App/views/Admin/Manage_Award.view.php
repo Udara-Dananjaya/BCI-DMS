@@ -29,6 +29,7 @@
 									<tr>
 										<th scope="col">Award ID</th>
 										<th scope="col">Award</th>
+										<th scope="col">Award Type</th>
 										<th scope="col">Action</th>
 									</tr>
 								</thead>
@@ -36,6 +37,7 @@
 									<tr>
                                         <th scope="col">Award ID</th>
 										<th scope="col">Award</th>
+										<th scope="col">Award Type</th>
 										<th scope="col">Action</th>
 									</tr>
 								</tfoot>
@@ -43,12 +45,13 @@
 								<?php
 									if ($Award_table == false) {
 										echo "<tr>";
-										echo " <td colspan='3'>- No Data Available In Table -</td>";
+										echo " <td colspan='4'>- No Data Available In Table -</td>";
 										echo "</tr>";
 									} else {
 										foreach ($Award_table as $value) {
 											echo "<tr>";
 											echo "<td>{$value->award_id}</td>";
+											echo "<td>{$value->award_type}</td>";
 											echo "<td>{$value->award_name}</td>";
 											echo "<td><a href='" . BASE . "Admin/Update_Award?id={$value->award_id}'><i class='bi bi-pencil'></i></a>
 													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Award?id={$value->award_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>

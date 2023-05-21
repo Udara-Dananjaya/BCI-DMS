@@ -28,13 +28,15 @@
 								<thead>
 									<tr>
 										<th scope="col">Batch ID</th>
+										<th scope="col">Degree</th>
 										<th scope="col">Batch Year</th>
 										<th scope="col">Action</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
-                                        <th scope="col">Batch ID</th>
+										<th scope="col">Batch ID</th>
+										<th scope="col">Degree</th>
 										<th scope="col">Batch Year</th>
 										<th scope="col">Action</th>
 									</tr>
@@ -43,12 +45,13 @@
 								<?php
 									if ($Batch_table == false) {
 										echo "<tr>";
-										echo " <td colspan='3'>- No Data Available In Table -</td>";
+										echo " <td colspan='4'>- No Data Available In Table -</td>";
 										echo "</tr>";
 									} else {
 										foreach ($Batch_table as $value) {
 											echo "<tr>";
 											echo "<td>{$value->batch_id}</td>";
+											echo "<td>{$value->deg_name}</td>";
 											echo "<td>{$value->batch_year}</td>";
 											echo "<td><a href='" . BASE . "Admin/Update_Batch?id={$value->batch_id}'><i class='bi bi-pencil'></i></a>
 													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Batch?id={$value->batch_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>

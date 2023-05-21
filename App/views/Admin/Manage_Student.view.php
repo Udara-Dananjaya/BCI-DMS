@@ -41,6 +41,7 @@
 										<th scope="col">Graduation Year</th>
 										<th scope="col">Token</th>
 										<th scope="col">Student Image</th>
+										<th scope="col">Degree</th>
 										<th scope="col">Action</th>
 									</tr>
 								</thead>
@@ -60,6 +61,7 @@
 										<th scope="col">Graduation Year</th>
 										<th scope="col">Token</th>
 										<th scope="col">Student Image</th>
+										<th scope="col">Degree</th>
 										<th scope="col">Action</th>
 									</tr>
 								</tfoot>
@@ -77,15 +79,16 @@
 											echo "<td>{$value->last_name}</td>";
 											echo "<td>{$value->email}</td>";
 											echo "<td>{$value->phone_number}</td>";
-											echo "<td>{$value->date_of_birth}</td>";
+											echo "<td>{$value->dob}</td>";
 											echo "<td>{$value->gender}</td>";
 											echo "<td>{$value->nic}</td>";
 											echo "<td>{$value->id_issued_date}</td>";
 											echo "<td>{$value->id_expire_date}</td>";
 											echo "<td>{$value->year_in_school}</td>";
 											echo "<td>{$value->graduation_year}</td>";
-											echo "<td>{$value->Token}</td>";
+											echo "<td>{$value->token}</td>";
 											echo "<td>{$value->img}</td>";
+											echo "<td>{$value->deg_name}</td>";
 											echo "<td><a href='" . BASE . "Admin/Update_Student?id={$value->student_id}'><i class='bi bi-pencil'></i></a>
 													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Student?id={$value->student_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>
 											</td>";

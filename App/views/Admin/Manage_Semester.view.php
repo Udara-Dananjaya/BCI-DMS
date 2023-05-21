@@ -13,6 +13,11 @@
 	</div>
 	<!-- End Page Title -->
 
+	<div style="text-align: right;">
+		<a href="Create_Semester"><button class="btn btn-primary">+ Add New Semester</button></a>
+	</div>
+	<br>
+
 	<section class="section dashboard">
 		<div class="row justify-content-left">
 			<div class="col-lg-4">
@@ -24,22 +29,71 @@
 
 							<div class="col-12">
 								<label for="inputDegree" class="form-label">Degree</label>
-								<input type="text" class="form-control" name="inputDegree" id="inputDegree">
+								<div class="col-12">
+									<select class="form-select" aria-label="Default select example" name="inputGender" required>
+									<option disabled selected>Select </option>
+									<option></option>
+									</select>
+								</div>
 							</div>
+
 						</form>
 						<!-- Vertical Form -->
 					</div>
 				</div>
 			</div>
+
+			<div class="col-lg-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Select Batch</h5>
+						<!-- Vertical Form -->
+						<form class="row g-3" method="POST">
+
+							<div class="col-12">
+								<label for="inputDegree" class="form-label">Batch</label>
+								<div class="col-12">
+									<select class="form-select" aria-label="Default select example" name="inputGender" required>
+									<option disabled selected>Select </option>
+									<option></option>
+									</select>
+								</div>
+							</div>
+
+						</form>
+						<!-- Vertical Form -->
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Select Department</h5>
+						<!-- Vertical Form -->
+						<form class="row g-3" method="POST">
+
+							<div class="col-12">
+								<label for="inputDegree" class="form-label">Department</label>
+								<div class="col-12">
+									<select class="form-select" aria-label="Default select example" name="inputGender" required>
+									<option disabled selected>Select </option>
+									<option></option>
+									</select>
+								</div>
+							</div>
+
+						</form>
+						<!-- Vertical Form -->
+					</div>
+				</div>
+			</div>
+
 		</div>
+
 	</section>
 
-	<div style="text-align: right;">
-		<a href="Create_Semester"><button class="btn btn-primary">+ Add New Semester</button></a>
-	</div>
-	<br>
-
-	<section class="section dashboard">
+	<!-- <section class="section dashboard">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card">
@@ -92,7 +146,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 </main>
 <!-- End #main -->
 <?php require_once('layout/footer.view.php'); ?>

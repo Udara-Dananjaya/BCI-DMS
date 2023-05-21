@@ -48,10 +48,10 @@
 									} else {
 										foreach ($Department_table as $value) {
 											echo "<tr>";
-											echo "<td>{$value->department_id}</td>";
-											echo "<td>{$value->department_name}</td>";
-											echo "<td><a href='" . BASE . "Admin/Update_Department?id={$value->department_id}'><i class='bi bi-pencil'></i></a>
-													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Department?id={$value->department_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>
+											echo "<td>{$value->dep_id}</td>";
+											echo "<td>{$value->dep_name}</td>";
+											echo "<td><a href='" . BASE . "Admin/Update_Department?id={$value->dep_id}'><i class='bi bi-pencil'></i></a>
+													| <a onclick='return confirm(\"Are you sure want to Delete ?\")' href='" . BASE . "Admin/Manage_Department?id={$value->dep_id}&delete=true'><i class='bi bi-trash3-fill'></i></a>
 											</td>";
 											echo "</tr>";
 										}
