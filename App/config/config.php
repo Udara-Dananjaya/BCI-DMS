@@ -21,7 +21,7 @@ $config['smtp_email'] ="admin@example.com" ; // administrator email address
 $config['smtp_name'] ="Sender" ; // administrator email address
 
 // routes configuration
-$config['defcon']='Sample'; // default controller
+$config['defcon']='Auth'; // default controller
 $config['defmet']= 'index'; // default controller
 
 $config['temp_eng']= true; // template engine

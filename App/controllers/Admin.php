@@ -3,14 +3,14 @@ class Admin
 {
     public function __construct()
     {
-          //if (empty($_SESSION['USER'])) {
+        //if (empty($_SESSION['USER'])) {
         //     redirect('Auth/login');
         // } // Check Is the user Login
     }
     use Controller;
     public function index()
     {
-       
+
         $staff = new Demo_model; // Load Model
         $staff->set_table('staff'); // Set Model Table
         $data['page'] = "Dashboard"; // Page URL
@@ -33,8 +33,14 @@ class Admin
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $degree = new Demo_model;
             $degree->set_table('degree');
-            $insert_data = array("degree_name" => $_POST['inputEmail']);
+            $insert_data = array(
+                "deg_name" => $_POST['inputDegree'],
+                "dep_id" => $_POST['inputDepartment'], 
+                "cord_id" => $_POST['inputCordinator'],
+                "duration" => $_POST['inputDuration']
+            );
             $degree->insert($insert_data);
+
             redirect('Admin/Manage_Degree');
         }
         $this->view('Admin/Create_Degree', $data);
@@ -84,7 +90,7 @@ class Admin
             }
         }
     }
-      
+
     public function Create_Batch()
     {
         $data = [];
@@ -146,7 +152,7 @@ class Admin
             }
         }
     }
-          
+
     public function Create_Semester()
     {
         $data = [];
@@ -208,7 +214,7 @@ class Admin
             }
         }
     }
-              
+
     public function Create_Course()
     {
         $data = [];
@@ -279,10 +285,10 @@ class Admin
         $data['User'] = $_SESSION['USER']->email; // Login User Name
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $user = new Demo_model;
-            $user->set_table('users');
+            $department = new Demo_model;
+            $department->set_table('users');
             $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
-            $user->insert($insert_data);
+            $department->insert($insert_data);
             redirect('Admin/Manage_Department');
         }
         $this->view('Admin/Create_Department', $data);
@@ -343,7 +349,20 @@ class Admin
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new Demo_model;
             $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
+            $insert_data = array(
+                "staff_no" => $_POST['inputID'],
+                "first_name" => $_POST['inputFirst'],
+                "last_name" => $_POST['inputLast'],
+                "email" => $_POST['inputEmail'],
+                "password" => $_POST['inputPassword'],
+                "phone_number" => $_POST['inputMobile'],
+                "office_number" => $_POST['inputOffice'],
+                "education" => $_POST['inputEducation'],
+                "experience" => $_POST['inputExperience'],
+                "img" => $_POST['inputImage'],
+                "dep_id" => $_POST['inputEmail'],
+                "usertype" => $_POST['inputType']
+            );
             $user->insert($insert_data);
             redirect('Admin/Manage_Staff');
         }
@@ -466,10 +485,41 @@ class Admin
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new Demo_model;
-            $user->set_table('users');
-            $insert_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword']);
+            $user->set_table('student');
+            $insert_data = array(
+                "student_no" => '1',
+                "first_name" => '1',
+                "last_name" => '1',
+                "email" => '1',
+                "phone_number" => '1',
+                "dob" => '1',
+                "gender" => '1',
+                "nic" => '1',
+                "id_issued_date	" =>'1',
+                "id_expire_date" =>'1',
+                "year_in_school" =>'1',
+                "graduation_year" =>'1',
+                "img" => '1',
+                "deg_id" =>'1'
+
+
+                // "student_no" => $_POST['inputID'],
+                // "first_name" => $_POST['inputFirst'],
+                // "last_name" => $_POST['inputLast'],
+                // "email" => $_POST['inputEmail'],
+                // "phone_number" => $_POST['inputMobile'],
+                // "dob" => $_POST['inputDob'],
+                // "gender" => $_POST['inputGender'],
+                // "nic" => $_POST['inputNic'],
+                // "id_issued_date	" => $_POST['inputIssued'],
+                // "id_expire_date" => $_POST['inputExpiry'],
+                // "year_in_school" => $_POST['inputYear'],
+                // "graduation_year" => $_POST['inputGraduation'],
+                // "img" => $_POST['inputImage'],
+                // "deg_id" => $_POST['inputDegree']
+            );
             $user->insert($insert_data);
-            redirect('Admin/Manage_Student');
+          //  redirect('Admin/Manage_Student');
         }
         $this->view('Admin/Create_Student', $data);
     }
@@ -483,7 +533,7 @@ class Admin
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new Demo_model;
-            $user->set_table('users');
+            $user->set_table('student');
             $update_data = array("email" => $_POST['inputEmail'], "password" => $_POST['inputPassword'], "date" => $_POST['inputDate']);
             $user->update($_POST['inputId'], $update_data, "id");
             redirect('Admin/Manage_Student');
@@ -491,7 +541,7 @@ class Admin
 
         if (!empty($_GET['id'])) {
             $user = new Demo_model;
-            $user->set_table('users');
+            $user->set_table('student');
             $arr['id'] = $_GET['id'];
             $data['Create_User'] = $user->first($arr);
             $this->view('Admin/Update_Student', $data);
@@ -552,7 +602,6 @@ class Admin
 
     public function Settings()
     {
-        
     }
 
     public function Logout()

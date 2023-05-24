@@ -34,18 +34,16 @@ trait Database
 		return $con->lastInsertId();
 	}
 
-	public function getRow($query, $data = [])
+	public function getRow($query)
 	{
 		$con = $this->connect();
 		$stm = $con->prepare($query);
-
-		$check = $stm->execute($data);
-		if ($check) {
-			$result = $stm->fetchAll(PDO::FETCH_OBJ);
-			if (is_array($result) && count($result)) {
-				return $result[0];
-			}
+		$stm->execute();
+		$result = $stm->fetchAll(PDO::FETCH_OBJ);
+		if (is_array($result) && count($result)) {
+			return $result[0];
+		} else {
+			return false;
 		}
-		return false;
 	}
 }

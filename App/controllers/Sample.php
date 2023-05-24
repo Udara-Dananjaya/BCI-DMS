@@ -37,9 +37,9 @@ class Sample
     public function Manage_User()
     {
         $data = [];
-        if (empty($_SESSION['USER'])) {
-            redirect('Sample/login');
-        } // Check Is the user Login
+        // if (empty($_SESSION['USER'])) {
+        //     redirect('Sample/login');
+        // } // Check Is the user Login
 
         $data['page'] = "Manage User"; // Page URL
         $data['pagegroup'] = "UserManagement"; // Page Sub Group Customer -> Manage Customer

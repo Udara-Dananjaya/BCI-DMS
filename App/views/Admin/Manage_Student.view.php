@@ -28,6 +28,7 @@
 								<thead>
 									<tr>
 										<th scope="col">Student ID</th>
+										<th scope="col">Student No</th>
 										<th scope="col">First Name</th>
 										<th scope="col">Last Name</th>
 										<th scope="col">Email</th>
@@ -48,6 +49,7 @@
 								<tfoot>
 									<tr>
 										<th scope="col">Student ID</th>
+										<th scope="col">Student No</th>
 										<th scope="col">First Name</th>
 										<th scope="col">Last Name</th>
 										<th scope="col">Email</th>
@@ -75,6 +77,7 @@
 										foreach ($Student_table as $value) {
 											echo "<tr>";
 											echo "<td>{$value->student_id }</td>";
+											echo "<td>{$value->student_no }</td>";
 											echo "<td>{$value->first_name}</td>";
 											echo "<td>{$value->last_name}</td>";
 											echo "<td>{$value->email}</td>";

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Main Model trait
  * This Model Use Database 
@@ -7,7 +8,19 @@
 trait Model
 {
 	use Database;
-	public $errors 		= [];
+	public $errors = [];
+
+	public function selectAll()
+	{
+		$query = "SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type limit $this->limit offset $this->offset";
+		return $this->query($query);
+	}
+
+	public function selectFirst()
+	{
+		$query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+		return $this->getRow($query);
+	}
 
 	public function findAll()
 	{
@@ -64,7 +77,8 @@ trait Model
 		}
 		$keys = array_keys($data);
 		$query = "insert into $this->table (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
-		$this->query($query, $data);
+		var_dump($query, $data);
+		//$this->query($query, $data);
 		return false;
 	}
 
@@ -97,7 +111,7 @@ trait Model
 		$this->query($query, $data);
 		return false;
 	}
-	
+
 	public function custom_query($query)
 	{
 		return $this->query($query);

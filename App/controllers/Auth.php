@@ -37,7 +37,9 @@ class Auth
             $row = $staff->first($arr);
             if ($row) {
                 if ($row->password === $_POST['password']) {
+                    
                     $_SESSION['USER'] = $row;
+
                     switch ($_SESSION['USER']->usertype) {
                         case 'Administrator':
                             redirect('Administrator/index');

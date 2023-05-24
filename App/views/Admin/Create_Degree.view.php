@@ -21,25 +21,25 @@
 
 							<div class="col-12">
 								<label for="inputDegree" class="form-label">Degree</label>
-								<input type="text" class="form-control" name="inputDegree" id="inputDegree">
+								<input type="text" class="form-control" name="inputDegree" id="inputDegree" required>
 							</div>
 							<div class="col-12">
 								<label for="inputDepartment" class="form-label">Department</label>
-								<select name="inputDepartment"  class="form-control">
+								<select name="inputDepartment"  class="form-control" required>
                                     <option class="form-control" selected="">Select Department</option>
-                                    <option> <? $Manage_Department->dep_name ?></option>
+                                    <option> </option>
                                 </select>
 							</div>
 							<div class="col-12">
-							<label for="inputCordinator" class="form-label">Cordinator</label>
-								<select name="inputCordinator" class="form-control" id="inputCordinator" required> 
-									<option disabled="" selected="">Select Cordinator</option>
-									$Select_Cordinator
-								</select>
+								<label for="inputCordinator" class="form-label">Cordinator</label>
+								<select name="inputCordinator"  class="form-control" required>
+                                    <option class="form-control" selected="">Select Cordinator</option>
+                                    <option> </option>
+                                </select>
 							</div>
 							<div class="col-12">
 								<label for="inputDuration" class="form-label">Duration</label>
-								<input type="number" class="form-control" name="inputDuration" id="inputDuration">
+								<input type="number" class="form-control" name="inputDuration" id="inputDuration" required>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary">Submit</button>
