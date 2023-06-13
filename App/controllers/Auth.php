@@ -33,7 +33,7 @@ class Auth
         if ($_SERVER['REQUEST_METHOD'] == "POST") { // If POST Data Available 
             $staff = new Demo_model; //Create Model Object
             $staff->set_table('staff'); //Set Table
-            $arr['email'] = $_POST['first_name']; // 
+            $arr['email'] = $_POST['yourUsername']; // 
             $row = $staff->first($arr);
             if ($row) {
                 if ($row->password === $_POST['password']) {
